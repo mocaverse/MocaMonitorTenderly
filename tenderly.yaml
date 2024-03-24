@@ -1,0 +1,31 @@
+account_id: "Calnix"
+actions:
+  calnix/mocamonitor:
+    runtime: v2
+    sources: actions
+    specs:
+      monitorV2:  # name of action
+        description: Monitor totalSupply of Moca tokens
+        function: example:tracker # action to execute
+        execution_type: parallel
+        trigger:
+          type: transaction
+          transaction:
+            status:
+              - mined
+            filters:
+              # MocaTokenAdaptor
+              - network: 11155111           #sepolia
+                status: success             # Transaction must have succeeded
+                function:
+                  name: send
+                  contract:
+                    address: 0xa8F355AE124d7120dAEA13239b6cC89FB0376779
+              # MocaOFT::mumbai
+              - network: 80001              #mumbai
+                status: success             # Transaction must have succeeded
+                function:
+                  name: send
+                  contract:
+                    address: 0x0EB26b982341c37A02812738C6c10EB0b66ef4F7
+project_slug: "mocamonitor"
