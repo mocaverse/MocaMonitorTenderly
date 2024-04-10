@@ -11,9 +11,9 @@ import axios from 'axios';
 import MocaTokenAbi from './MocaTokenAbi.json';
 import MocaOftAbi from './MocaOftAbi.json';
 
-const MOCA_TOKEN_ADDRESS = "0xB9B3282D15D86BfFEbf3e2BdEb564E071834fAb3";
-const MOCA_TOKEN_ADAPTER_ADDRESS = "0xF49880d03567302Cb20B4A668bD69321B0b1bF59";
-const MOCA_OFT_ADDRESS = "0xdFBfeE56AB39e39fb7f0EFeE329E96c57b39Ba44";
+const MOCA_TOKEN_ADDRESS = "0x7C5FCc377D2116a8eA94Ea527774a324E73D185B";
+const MOCA_TOKEN_ADAPTER_ADDRESS = "0x73ff46a2F756276269B2a2630C6288623d9c1bc9";
+const MOCA_OFT_ADDRESS = "0x45e8c7B75ba86a27562eE3760011c4adC36C076b";
 
 export const tracker: ActionFn = async (context: Context, event: Event) => {
 	const gatewaySepolia = context.gateways.getGateway(Network.SEPOLIA);
