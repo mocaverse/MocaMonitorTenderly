@@ -11,9 +11,9 @@ import axios from 'axios';
 import MocaTokenAbi from './MocaTokenAbi.json';
 import MocaOftAbi from './MocaOftAbi.json';
 
-const MOCA_TOKEN_ADDRESS = "0xFe149349285995D59Ec3FD6A5080840443906B45";
-const MOCA_TOKEN_ADAPTER_ADDRESS = "0xa8F355AE124d7120dAEA13239b6cC89FB0376779";
-const MOCA_OFT_ADDRESS = "0x0EB26b982341c37A02812738C6c10EB0b66ef4F7";
+const MOCA_TOKEN_ADDRESS = "0xB9B3282D15D86BfFEbf3e2BdEb564E071834fAb3";
+const MOCA_TOKEN_ADAPTER_ADDRESS = "0xF49880d03567302Cb20B4A668bD69321B0b1bF59";
+const MOCA_OFT_ADDRESS = "0xdFBfeE56AB39e39fb7f0EFeE329E96c57b39Ba44";
 
 export const tracker: ActionFn = async (context: Context, event: Event) => {
 	const gatewaySepolia = context.gateways.getGateway(Network.SEPOLIA);
@@ -65,6 +65,8 @@ export const tracker: ActionFn = async (context: Context, event: Event) => {
 		await notifyTelegram(hashMessage, context);
 
 	} else {
+
+		await notifyTelegram('Balances are equal', context);
 
 		console.log('Balances are equal');
 	}

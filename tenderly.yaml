@@ -6,7 +6,7 @@ actions:
     specs:
       monitorV2:  # name of action
         description: Monitor totalSupply of Moca tokens
-        function: example:tracker # action to execute
+        function: example:tracker # action to execute: see example.ts
         execution_type: parallel
         trigger:
           type: transaction
@@ -18,14 +18,14 @@ actions:
               - network: 11155111           #sepolia
                 status: success             # Transaction must have succeeded
                 function:
-                  name: send
+                  name: lzReceive
                   contract:
-                    address: 0xa8F355AE124d7120dAEA13239b6cC89FB0376779
+                    address: 0xF49880d03567302Cb20B4A668bD69321B0b1bF59
               # MocaOFT::mumbai
               - network: 80001              #mumbai
                 status: success             # Transaction must have succeeded
                 function:
-                  name: send
+                  name: lzReceive
                   contract:
-                    address: 0x0EB26b982341c37A02812738C6c10EB0b66ef4F7
+                    address: 0xdFBfeE56AB39e39fb7f0EFeE329E96c57b39Ba44
 project_slug: "mocamonitor"
