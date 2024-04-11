@@ -17,15 +17,15 @@ actions:
               # MocaTokenAdaptor
               - network: 11155111           #sepolia
                 status: success             # Transaction must have succeeded
-                eventEmitted:               # trigger on events
-                  name: OFTReceived
+                function:
+                  name: lzReceive
                   contract:
                     address: 0x73ff46a2F756276269B2a2630C6288623d9c1bc9
               # MocaOFT::mumbai
               - network: 80001              #mumbai
                 status: success             # Transaction must have succeeded
-                eventEmitted:
-                  name: OFTReceived
+                function:
+                  name: lzReceive
                   contract:
                     address: 0x45e8c7B75ba86a27562eE3760011c4adC36C076b
 project_slug: "mocamonitor"
