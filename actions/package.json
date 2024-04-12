@@ -1,0 +1,15 @@
+{
+    "name": "actions",
+    "scripts": {
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "typescript": "^4.3.5"
+    },
+    "dependencies": {
+        "@tenderly/actions": "^0.2.0",
+        "axios": "^1.6.8",
+        "ethers": "^6.11.1"
+    },
+    "private": true
+}
