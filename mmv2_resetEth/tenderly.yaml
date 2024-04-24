@@ -1,0 +1,31 @@
+account_id: "CalnixAB"
+actions:
+  calnixab/mocamonitor:
+    runtime: v2
+    sources: actions
+    specs:
+      monitorV2_resetEth:  # name of action
+        description: Monitor totalSupply of Moca tokens
+        function: example:tracker # action to execute: see example.ts
+        execution_type: parallel
+        trigger:
+          type: transaction
+          transaction:
+            status:
+              - mined
+            filters:
+              # MocaTokenAdaptor
+              - network: 1           # mainnet
+                status: success             # Transaction must have succeeded
+                eventEmitted:               # trigger on events
+                  name: OFTReceived
+                  contract:
+                    address: 0xD8Cd4fB967De89A10D1db89daC7D103EB22509EB
+              # MocaOFT::mumbai
+              - network: 137         # polygon
+                status: success             # Transaction must have succeeded
+                eventEmitted:
+                  name: OFTReceived
+                  contract:
+                    address: 0xa044Ee26D29CF2E8bE374AdF23fc90d528A9eC42
+project_slug: "mocamonitor"
