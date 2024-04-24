@@ -11,9 +11,9 @@ import axios from 'axios';
 import MocaTokenAbi from './MocaTokenAbi.json';
 import MocaOftAbi from './MocaOftAbi.json';
 
-const MOCA_TOKEN_ADDRESS = "0xE8d8fC1eB5BAbDE5FccFD5EFB788f075738E1044";
-const MOCA_TOKEN_ADAPTER_ADDRESS = "0x23E086A3AD04E8dAb40c263FE18Fa1f32ED28FB7";
-const MOCA_OFT_ADDRESS = "0xfdf8c03CdbC1851BF5bd42a73F4fBA8102F4b515";
+const MOCA_TOKEN_ADDRESS = "0x541Ae71C06fbFAE89AcD99149dC95B0965971E37";
+const MOCA_TOKEN_ADAPTER_ADDRESS = "0xD8Cd4fB967De89A10D1db89daC7D103EB22509EB";
+const MOCA_OFT_ADDRESS = "0xa044Ee26D29CF2E8bE374AdF23fc90d528A9eC42";
 
 export const tracker: ActionFn = async (context: Context, event: Event) => {
 	const gatewayEthereum = context.gateways.getGateway(Network.MAINNET);
@@ -35,6 +35,7 @@ export const tracker: ActionFn = async (context: Context, event: Event) => {
 		const privateKey = await context.secrets.get("monitor.privateKey.Live");
 		const signer = new ethers.Wallet(privateKey, rpcPolygon);
     const mocaOftContract = new ethers.Contract(MOCA_OFT_ADDRESS, MocaOftAbi, signer);
+	
    
     // Call totalSupply on OFT
     const oftBalance = await mocaOftContract.totalSupply();
@@ -47,7 +48,9 @@ export const tracker: ActionFn = async (context: Context, event: Event) => {
 
 		//break bridge
 		const message = 
-			`Adapter Balance: ${adapterBalance}
+			`TENDERLY_POLY\n
+
+			 Adapter Balance: ${adapterBalance}
 			 OFT Balance: ${oftBalance}
 			 Delta: ${delta}
 			 DeltaTokens: ${deltaTokens}`;
@@ -59,26 +62,28 @@ export const tracker: ActionFn = async (context: Context, event: Event) => {
 		console.log('Polygon txn hash:', hash.toString());
 		
 		const hashMessage = 
-			`resetPeer() called successfully on Polygon.\n
-		https://mumbai.polygonscan.com/tx/${hash.toString()}\n`;
+			`TENDERLY_POLY\n
+		resetPeer() called successfully on Polygon.\n
+		https://polygonscan.com/tx/${hash.toString()}\n`;
 		
 		await notifyTelegram(hashMessage, context);
 
 	} else {
 
-		await notifyTelegram('Balances are equal: LIVE TEST', context);
-
+		await notifyTelegram('Tenderly_Poly\n Balances are equal: LIVE TEST', context);
 		console.log('Balances are equal: LIVE TEST');
 	}
 }
 
 async function sendTransaction(context: Context, mocaOftContract: ethers.Contract) {
 
-	// break bridge from polygon side: polgyon cheaper
-	const homeChainID = 1;		// mainnet chainId
+	// break bridge from polygon side
+	const remoteChainID = 1;		// mainnet chainId
 	
-	const txn = await mocaOftContract.resetPeer(homeChainID);	
+	const txn = await mocaOftContract.resetPeer(remoteChainID);	
 	console.log('Transaction created');
+
+
 
 	// wait for block
 	const receipt = await txn.wait(1);
