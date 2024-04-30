@@ -11,9 +11,9 @@ import axios from 'axios';
 import MocaTokenAbi from './MocaTokenAbi.json';
 import MocaOftAbi from './MocaOftAbi.json';
 
-const MOCA_TOKEN_ADDRESS = "0x541Ae71C06fbFAE89AcD99149dC95B0965971E37";
-const MOCA_TOKEN_ADAPTER_ADDRESS = "0xD8Cd4fB967De89A10D1db89daC7D103EB22509EB";
-const MOCA_OFT_ADDRESS = "0xa044Ee26D29CF2E8bE374AdF23fc90d528A9eC42";
+const MOCA_TOKEN_ADDRESS = "0xF944e35f95E819E752f3cCB5Faf40957d311e8c5";
+const MOCA_TOKEN_ADAPTER_ADDRESS = "0x2B11834Ed1FeAEd4b4b3a86A6F571315E25A884D";
+const MOCA_OFT_ADDRESS = "0xF944e35f95E819E752f3cCB5Faf40957d311e8c5";
 
 export const tracker: ActionFn = async (context: Context, event: Event) => {
 	const gatewayEthereum = context.gateways.getGateway(Network.MAINNET);
